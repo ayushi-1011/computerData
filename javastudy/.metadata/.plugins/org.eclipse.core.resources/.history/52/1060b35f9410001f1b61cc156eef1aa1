@@ -1,0 +1,17 @@
+package com.sunbeam.tester;
+
+import java.sql.SQLException;
+import java.util.Scanner;
+
+import com.sunbeam.dao.AccountDao;
+
+public class AccountTest {
+	public static void main(String[] args) throws SQLException, Exception {
+		try(AccountDao accountDao = new AccountDao()){
+			try(Scanner sc = new Scanner(System.in)){
+				
+			}
+		}
+	}
+
+}

@@ -1,0 +1,14 @@
+package com.sunbeam;
+
+public class Test {
+public static void main(String[] args) {
+	Player [] arr = new Player[11];
+	arr[0] = new Cricketer();
+	arr[0].accept();
+	System.out.println(arr[0].toString());
+
+}
+	public Test() {
+	}
+
+}

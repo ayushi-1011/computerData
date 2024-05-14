@@ -1,0 +1,34 @@
+package com.sunbeam;
+
+import java.util.Scanner;
+
+public class Cricketer extends Player implements Bowler, Batter {
+int runs;
+int wickets;
+
+	public Cricketer() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public int getRuns() {
+		// TODO Auto-generated method stub
+		return runs;
+	}
+
+	@Override
+	public int getWickets() {
+		// TODO Auto-generated method stub
+		return wickets;
+	}
+	Scanner sc = new Scanner(System.in);
+	@Override
+    public void accept() {
+	super.accept();
+	System.out.println("enter runs:");
+	runs= sc.nextInt();
+
+	
+	
+}
+}

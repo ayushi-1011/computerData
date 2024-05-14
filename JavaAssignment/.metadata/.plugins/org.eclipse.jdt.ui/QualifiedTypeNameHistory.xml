@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="invoicetest.Invoice"/>
+    <fullyQualifiedTypeName name="com.add.fruit.Fruit"/>
+    <fullyQualifiedTypeName name="com.add.fruit.Mango"/>
+    <fullyQualifiedTypeName name="com.add.fruit.Orange"/>
+    <fullyQualifiedTypeName name="com.add.fruit.Apple"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+</qualifiedTypeNameHistroy>

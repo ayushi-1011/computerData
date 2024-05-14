@@ -1,0 +1,70 @@
+package com.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.DbUtil.DBUtil;
+import com.entity.Batch;
+import com.entity.User;
+import com.mysql.cj.protocol.Resultset;
+import com.mysql.cj.xdevapi.Result;
+
+
+public class UserDao implements AutoCloseable{
+	
+	Connection connection;
+	
+	public UserDao() throws SQLException {
+		connection = DBUtil.getConnection();
+	}
+
+	public void addBatch(User user) throws SQLException {
+		String sql = "INSERT INTO user (useridemail,password) value (?,?);";
+		try(PreparedStatement ps = connection.prepareStatement(sql)){
+			ps.setInt(1,user.getUserid());
+			ps.setString(2, user.getEmail());
+			ps.setString(3, user.getPassword());
+			int result = ps.executeUpdate();
+			
+			if(result != 0) {
+				System.out.println(" Batch Addded succesfully");
+			}
+			
+		}
+		
+	}
+
+	public List<Batch> getAllBatch() throws SQLException{
+		String sql="SELECT * FROM batches;";
+		try(PreparedStatement ps = connection.prepareStatement(sql)){
+			List<Batch> batchList = new ArrayList<Batch>();
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Batch batch = new Batch();
+				batch.setId(rs.getInt(1));
+				batch.setName(rs.getString(2));
+				batch.setCourse(rs.getString(3));
+				
+				batchList.add(batch);
+			}
+			
+			return batchList;
+		}
+		
+		
+		
+		
+	}
+	@Override
+	public void close() throws Exception {
+		connection.close();
+		
+	}
+	
+}

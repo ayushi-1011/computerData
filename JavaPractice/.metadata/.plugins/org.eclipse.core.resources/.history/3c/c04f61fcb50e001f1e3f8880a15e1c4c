@@ -1,0 +1,20 @@
+package com.service;
+
+import java.util.Scanner;
+
+import com.entity.Batch;
+
+public class BatchServise {
+
+	
+	public static Batch addBatch(Scanner sc) {
+		Batch b = new Batch();
+		System.out.println(" Enter Batch Name ");
+		b.setName(sc.next());
+		
+		System.out.println(" Enter Course Name ");
+		b.setCourse(sc.next());
+		
+		return b;
+	}
+}

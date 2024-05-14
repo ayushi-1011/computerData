@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class ReadString extends Exception {
+private String s;
+
+	public void setS(String s) throws ExceptionLineTooLong {
+		if(s.length()>80) {  
+		       throw new ExceptionLineTooLong("String is too long");  
+		   }
+	this.s = s;
+}
+public ReadString() {}
+
+	public ReadString(String message)  {
+		super(message);
+	}
+
+	public static void main(String[] args) {
+		ReadString s1 = new ReadString();
+		Scanner sc = new Scanner(System.in);
+		
+      
+       try {
+    	   System.out.println("enter string:");
+           s1.setS(sc.next());
+	} catch ( ExceptionLineTooLong e) {
+		
+		e.printStackTrace();
+	}  
+	}
+
+}

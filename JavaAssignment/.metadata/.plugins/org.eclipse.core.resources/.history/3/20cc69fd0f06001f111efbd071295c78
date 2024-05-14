@@ -1,0 +1,9 @@
+package com.sunbeam;
+
+public class Bowler {
+
+	public Bowler() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

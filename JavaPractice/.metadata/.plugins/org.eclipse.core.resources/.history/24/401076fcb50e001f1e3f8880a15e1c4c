@@ -1,0 +1,21 @@
+package com.service;
+
+import java.util.Scanner;
+
+import com.entity.Batch;
+import com.entity.User;
+
+public class UserService {
+
+	
+	public static User addUser(Scanner sc) {
+		User b = new User();
+		System.out.println(" Enter Email ");
+		b.setEmail(sc.next());
+		
+		System.out.println(" Enter Password ");
+		b.setCourse(sc.next());
+		
+		return b;
+	}
+}

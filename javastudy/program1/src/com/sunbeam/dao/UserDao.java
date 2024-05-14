@@ -1,0 +1,33 @@
+package com.sunbeam.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.sunbeam.entity.User;
+import com.sunbeam.util.DbUtil;
+
+public class UserDao implements AutoCloseable {
+	private Connection connection;
+	
+	public UserDao() throws SQLException{
+		connection = DbUtil.getConnection();
+	}
+	public void insertUser(User user) throws SQLException{
+		String sql ="Insert into user(email,password) Values(?,?)";
+		try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+			preparedStatement.setString(1, user.getEmail());
+			preparedStatement.setString(2, user.getPassword());
+			preparedStatement.executeUpdate();
+		}
+	}
+	
+	
+	
+	@Override
+	public void close() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

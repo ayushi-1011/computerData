@@ -1,0 +1,38 @@
+package com.Sunbeam;
+
+import java.util.Scanner;
+
+public abstract class Employee {
+private int empid;
+private String name;
+private float salary;
+	public Employee() {
+		System.out.println("in employee constructor");
+	}
+	Scanner sc = new Scanner(System.in);
+public void accept() {
+	System.out.println("enter empid:"+empid);
+	empid = sc.nextInt();
+	System.out.println("enter name:");
+	name = sc.next();
+	}
+public float getSalary() {
+	return salary;
+}
+public void setSalary(float salary) {
+	this.salary = salary;
+}
+public String getName() {
+	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
+}
+public  abstract void calculateSalary();
+@Override
+public String toString() {
+	return "Employee [empid=" + empid + ", name=" + name+"salary="+salary+"]";
+}
+
+}

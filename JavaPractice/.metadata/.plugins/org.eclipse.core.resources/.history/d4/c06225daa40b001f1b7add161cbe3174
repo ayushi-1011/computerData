@@ -1,0 +1,30 @@
+package com.sunbeam.dao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.sunbeam.entity.Student;
+import com.sunbeam.util.DbUtil;
+
+public class StudentDao implements AutoCloseable {
+	private Connection connection;
+public StudentDao() throws SQLException{
+	connection = DbUtil.getConnection();
+}
+
+public void insertStudent(Student student) throws SQLException{
+	String sql= "INSERT INTO student(name,marks,mobile)VALUES(?,?,?)";
+	try(PreparedStatement preparedStatement=connection.prepareStatement(sql));
+	preparedStatement.setString(1,student.getName());
+	preparedStatement.setDouble(2, student.getMarks());
+	preparedStatement.setString(2, student.getMobile());
+	preparedStatement.executeUpdate();
+}
+
+	@Override
+	public void close() throws Exception {
+	if(connection!=null)
+		connection.close();
+	}
+
+}

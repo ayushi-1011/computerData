@@ -1,0 +1,9 @@
+package com.sunbeam;
+
+public class array {
+
+	public array() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

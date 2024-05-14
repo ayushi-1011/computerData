@@ -1,0 +1,23 @@
+package com.sunbeam;
+
+public class Cricketer extends Player implements Bowler, Batter {
+int runs;
+int wickets;
+
+	public Cricketer() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public int getRuns() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getWickets() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

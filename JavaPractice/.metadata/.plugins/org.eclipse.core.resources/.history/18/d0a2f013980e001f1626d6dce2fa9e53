@@ -1,0 +1,199 @@
+package com;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Scanner;
+
+import com.dao.BatchDao;
+import com.dao.ModuleDao;
+import com.entity.Batch;
+import com.entity.Module;
+import com.service.BatchServise;
+import com.service.ModuleService;
+
+public class Tester {
+
+	static void menu() {
+		System.out.println(" - - -  -  - CHOOSE - - - -  - \n\n" + "0. EXIT \n" + "1. add new batch. \r\n"
+				+ "2. display all batches.\r\n" + "3. add new module.\r\n"
+				+ "4. display modules of the given batch.\r\n" + "5. delete module by name for given batch id.\r\n"
+				+ "6. display modulewise total days for given batch id.\r\n" + "7. edit module.\r\n"
+				+ "8. display number of days for each course for each faculty");
+	}
+1
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int choice;
+
+		do {
+			menu();
+			choice = sc.nextInt();
+			switch (choice) {
+			case 0:
+				System.out.println(" Thank you ...");
+				break;
+			case 1:
+//				add new batch.
+
+				try (BatchDao batchdao = new BatchDao()) {
+					batchdao.addBatch(BatchServise.addBatch(sc));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				break;
+
+			case 2:
+//				display all batches.
+
+				try (BatchDao batchdao = new BatchDao()) {
+					List<Batch> blist = batchdao.getAllBatch();
+					for (Batch b : blist) {
+						System.out.println(b);
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				break;
+			case 3:
+//				add new module.
+				try (ModuleDao md = new ModuleDao()) {
+					md.addModule(ModuleService.addModule(sc));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				break;
+
+			case 4:
+
+//				display modules of the given batch.
+
+				try (ModuleDao md = new ModuleDao()) {
+					BatchDao bd = new BatchDao();
+					List<Batch> batchList = bd.getAllBatch();
+
+					if (batchList.size() != 0) {
+						System.out.println(" Choose BatchId");
+						for (Batch b : batchList) {
+							System.out.println(b.getId() + " : " + b.getName());
+						}
+					}
+					List<Module> mlist = md.moduleAsPerBatch(sc.nextInt());
+
+					for (Module b : mlist) {
+						System.out.println(b);
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				break;
+
+			case 5:
+				int id;
+				String name;
+				try (ModuleDao md = new ModuleDao()) {
+					BatchDao bd = new BatchDao();
+					List<Batch> batchList = bd.getAllBatch();
+
+					if (batchList.size() != 0) {
+						System.out.println(" Choose BatchId");
+						for (Batch b : batchList) {
+							System.out.println(b.getId() + " : " + b.getName());
+						}
+					}
+					id = sc.nextInt();
+					List<Module> mlist = md.moduleAsPerBatch(id);
+					System.out.println("enter Name You want to delete");
+
+					for (Module b : mlist) {
+						System.out.println(b.getName());
+					}
+
+					name = sc.next();
+
+					md.deleteModule(id, name);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			case 6:
+
+				try (ModuleDao md = new ModuleDao()) {
+					BatchDao bd = new BatchDao();
+					List<Batch> batchList = bd.getAllBatch();
+
+					if (batchList.size() != 0) {
+						System.out.println(" Choose BatchId");
+						for (Batch b : batchList) {
+							System.out.println(b.getId() + " : " + b.getName());
+						}
+					}
+
+					List<Module> mlist = md.moduleAsPerBatch(sc.nextInt());
+
+					int sum = 0;
+					for (Module b : mlist) {
+						System.out.println("Module NAme :" + b.getName() + " Days :" + b.getDay());
+
+						sum = sum + b.getDay();
+					}
+
+					System.out.println(" Total Days : " + sum);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+
+			case 7:
+				try (ModuleDao md = new ModuleDao()) {
+					List<Module> mlist = md.getAllModule();
+					System.out.println(" Enter id where You want to update");
+					for (Module m : mlist) {
+						System.out.println(m);
+					}
+					int upid = sc.nextInt();
+
+					for (Module m : mlist) {
+						if (upid == m.getId())
+							System.out.println(m);
+					}
+
+					md.updateModule(ModuleService.addModule(sc), upid);
+					System.out.println(" Updated Succesfully ...");
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				break;
+
+			case 8:
+				
+				try (ModuleDao md = new ModuleDao()) {
+					md.allData();
+					
+					
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				break;
+
+			default:
+				System.out.println(" Invalid Choice...");
+				break;
+			}
+
+		} while (choice != 0);
+
+	}
+
+}

@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class ReadString {
+private String s;
+
+	public void setS(String s) {
+	this.s = s;
+}
+
+	public ReadString() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		ReadString s1 = new ReadString();
+       System.out.println("enter string:");
+       s1.setS(sc.next());
+	}
+
+}

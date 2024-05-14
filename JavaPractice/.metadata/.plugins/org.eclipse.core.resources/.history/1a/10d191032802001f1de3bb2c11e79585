@@ -1,0 +1,16 @@
+package com.sunbeam;
+
+public class program {
+
+	public static void main(String[] args) {
+		Time t1;
+		t1 = new Time();
+		
+		Time t2= new Time(10,20);
+		//t1.accept();
+		t2.display();
+		
+
+	}
+
+}

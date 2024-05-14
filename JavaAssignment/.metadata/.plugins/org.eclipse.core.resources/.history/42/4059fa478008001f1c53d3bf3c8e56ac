@@ -1,0 +1,9 @@
+package com.sunbeam;
+
+public class Stu {
+
+	public Stu() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
